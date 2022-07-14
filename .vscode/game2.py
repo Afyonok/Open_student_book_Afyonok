@@ -1,17 +1,41 @@
 #игра загадай число компьютер сам загадывает и сам угадывает
+from itertools import count
 import numpy as np
 
 def random_predict(number:int=1)-> int:
     
 
     count = 0
-    while True:
+    min_n = 1 # Минимальное значение рассматриваемого интервала
+    max_n = 100 # Максимальное значение рассматриваемого интервала
+    md = 0
+    predict_number = int(np.random.randint(1, 101))
+    '''while True:
         count += 1
-        predict_number = np.random.randint(1, 101)
-    
-        if predict_number == number:
+        if predict_number > number:
+           max_n = predict_number 
+           predict_number = round((max_n + min_n) // 2)
+        elif predict_number < number:
+           min_n = predict_number
+           predict_number = round((max_n + min_n) // 2)
+        elif predict_number is None:
+            pass
+        else:
+            break
+        return count'''
+     while predict_number != number:
+        count += 1
+        print(count)
+        if predict_number > number:
+           max_n = predict_number 
+           predict_number = (max_n + min_n) // 2 
+        elif predict_number < number:
+           min_n = predict_number 
+           predict_number = (max_n + min_n) // 2 
+        else:
             break
     return count
+
 def score_game(random_predict) -> int:
 
     count_ls = []
@@ -19,7 +43,7 @@ def score_game(random_predict) -> int:
     random_array = np.random.randint(1, 101, size=(1000))
     
     for number in random_array:
-        count_ls.append(random_predict(number))
+        count_ls.append(int(random_predict(number)))
         
     score =int(np.mean(count_ls))
     print(f'ваш алгоритм угадывает в среднем за: {score} попыток')
