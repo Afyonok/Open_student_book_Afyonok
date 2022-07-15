@@ -4,28 +4,15 @@ import numpy as np
 
 def random_predict(number:int=1)-> int:
     
-
     count = 0
     min_n = 1 # Минимальное значение рассматриваемого интервала
-    max_n = 100 # Максимальное значение рассматриваемого интервала
+    max_n = 101 # Максимальное значение рассматриваемого интервала
     md = 0
+    
     predict_number = int(np.random.randint(1, 101))
-    '''while True:
+
+    while predict_number != number:
         count += 1
-        if predict_number > number:
-           max_n = predict_number 
-           predict_number = round((max_n + min_n) // 2)
-        elif predict_number < number:
-           min_n = predict_number
-           predict_number = round((max_n + min_n) // 2)
-        elif predict_number is None:
-            pass
-        else:
-            break
-        return count'''
-     while predict_number != number:
-        count += 1
-        print(count)
         if predict_number > number:
            max_n = predict_number 
            predict_number = (max_n + min_n) // 2 
